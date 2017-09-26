@@ -1,0 +1,9 @@
+<% disable_email = false unless defined?(disable_email) %>
+
+<%= simple_form_for @user do |f| %>
+  <%= f.input :name %>
+  <%= f.input :email, disabled: disable_email %>
+  <%= f.input :password, required: true %>
+  <%= f.input :password_confirmation, required: true %>
+  <%= f.button :submit, 'Signup' %>
+<% end %>

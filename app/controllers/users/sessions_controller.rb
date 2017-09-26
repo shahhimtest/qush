@@ -48,7 +48,7 @@ class Users::SessionsController < ApplicationController
   end
 
   def user_params
-    return nil unless params[:user].present?
+    return unless params[:user].present?
     params.require(:user).permit(:email, :password)
   end
 end

@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-body text-center">
+        <h3><%= @user.name %></h3>
+
+        <% if current_user == @user %>
+          <hr>
+          <%= link_to 'Edit Profile', edit_user_path(@user), class: 'btn btn-link' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          Messages
+        </h3>
+      </div>
+
+      <% unless @messages.present? %>
+        <div class="panel-body">
+          No messages yet.
+        </div>
+      <% end %>
+
+      <ul class="list-group">
+        <% @messages.each do |message| %>
+          <li class="list-group-item">
+            <p><%= message.content %></p>
+            Likes <%= message.likes_count %><br>
+            <small>
+              <%= time_tag message.created_at %>
+            </small>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

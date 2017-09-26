@@ -14,7 +14,7 @@
           </div>
 
           <div class="panel-body">
-            <%= simple_form_for User.new, url: 'TODO' do |f| %>
+            <%= simple_form_for User.new do |f| %>
               <%= f.input :name %>
               <%= f.input :email %>
               <%= f.input :password, required: true %>
