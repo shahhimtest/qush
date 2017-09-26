@@ -10,17 +10,16 @@
       <ul class="list-group">
         <% @messages.each do |message| %>
           <li class="list-group-item">
-            <p>
-              <b><%= link_to message.publisher.name, user_path(message.publisher) %></b>
-            </p>
-            <p><%= link_to message.content, message_path(message) %></p>
-            <hr>
-            <small>
-              <%= time_tag message.created_at %>
-            </small>
+            <%= render 'messages/message', message: message %>
           </li>
         <% end %>
       </ul>
+
+      <% if @messages.total_pages > 1 %>
+        <div class="panel-footer text-center">
+          <%= will_paginate @messages, renderer: BootstrapPagination::Rails %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

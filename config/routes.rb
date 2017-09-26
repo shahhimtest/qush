@@ -15,6 +15,11 @@ Rails.application.routes.draw do
   resources :users do
     get 'confirm/:confirmation_token' => 'users#confirm', as: :confirm
 
+    scope module: :users do
+      get 'follower' => 'relationships#follower'
+      get 'following' => 'relationships#following'
+    end
+
     collection do
       scope module: :users do
         resource :session, only: [:new, :create, :destroy]

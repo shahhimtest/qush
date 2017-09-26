@@ -1,7 +1,6 @@
-class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :confirm]
-  before_action :authorize!
-
+class UsersController < Users::Base
+  skip_before_action :set_user, only: [:index, :new, :create]
+  
   def index
     @users = search_q.result(distinct: true).paginate(page: params[:page])
   end
@@ -102,9 +101,5 @@ class UsersController < ApplicationController
   def user_edit_params
     return unless params[:user].present?
     params.require(:user).permit(:name, :username, :password, :password_confirmation)
-  end
-
-  def set_user
-    @user = User.find params[:user_id] || params[:id]
   end
 end

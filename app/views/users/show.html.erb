@@ -29,15 +29,19 @@
 
         <div class="row text-center">
           <div class="col-md-6">
-            <p>    
-              <b>Follower</b><br>
-              <%= number_with_delimiter @user.follower_count %>
+            <p>
+              <%= link_to user_follower_path(@user) do %>
+                <b>Follower</b><br>
+                <%= number_with_delimiter @user.follower_count %>
+              <% end %>
             </p>
           </div>
           <div class="col-md-6">
             <p>
-              <b>Following</b><br>
-              <%= number_with_delimiter @user.followed_count %>
+              <%= link_to user_following_path(@user) do %>
+                <b>Following</b><br>
+                <%= number_with_delimiter @user.followed_count %>
+              <% end %>
             </p>
           </div>
         </div>
