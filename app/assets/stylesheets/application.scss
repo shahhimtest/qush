@@ -1,10 +1,13 @@
 @import "**/*";
 
+$font-family-sans-serif: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
 $brand-success: #5cb85c;
 $brand-info: #5bc0de;
 $brand-warning: #f0ad4e;
 $brand-danger: #d9534f;
 
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,400i,500,700');
 @import "bootstrap-sprockets";
 @import "bootswatch/lumen/variables";
 @import "bootstrap";
