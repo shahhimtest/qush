@@ -2,6 +2,10 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :confirm]
   before_action :authorize!
 
+  def index
+    @users = search_q.result(distinct: true).paginate(page: params[:page])
+  end
+
   def new
     @user = User.new user_params
   end
@@ -20,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @messages = @user.messages
+    @messages = @user.messages.paginate(page: params[:messages_page])
   end
 
   def edit
@@ -63,7 +67,7 @@ class UsersController < ApplicationController
       return true unless user_signed_in?
     end
 
-    if show_action?
+    if index_action? || show_action?
       return true
     end
 
@@ -77,7 +81,7 @@ class UsersController < ApplicationController
   end
 
   def authorized?
-    if create_action? || show_action?
+    if index_action? || create_action? || show_action?
       return true
     end
 

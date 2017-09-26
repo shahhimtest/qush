@@ -16,6 +16,13 @@
         <li><%= link_to 'Push', new_message_path %></li>
       </ul>
 
+      <%= search_form_for search_q, class: 'navbar-form navbar-left' do |f| %>
+        <%= f.search_field :name_or_username_cont, class: 'form-control', placeholder: 'Search for user' %>
+        <%= f.button :button, class: 'btn btn-default' do %>
+          Search
+        <% end %>
+      <% end %>
+
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li>

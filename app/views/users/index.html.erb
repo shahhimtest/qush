@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-md-offset-3 col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Users</h3>
+      </div>
+
+      <% if @users.empty? %>
+        <div class="panel-body">
+          No Users
+        </div>
+      <% end %>
+
+      <div class="list-group">
+        <% @users.each do |user| %>
+          <%= link_to user_path(user), class: 'list-group-item' do %>
+            <b><%= user.name %></b>
+            <small>@<%= user.username %></small>
+          <% end %>
+        <% end %>
+      </ul>
+
+      <% if @users.total_pages > 1 %>
+        <div class="panel-footer text-center">
+          <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

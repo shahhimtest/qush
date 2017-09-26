@@ -10,7 +10,13 @@ class ApplicationController < ActionController::Base
   rescue_from ActionControl::NotAuthenticatedError, with: :user_not_authenticated
   rescue_from ActionControl::NotAuthorizedError, with: :user_not_authorized
 
+  helper_method :search_q
+
   private
+
+  def search_q
+    @search_q ||= User.ransack(params[:q])
+  end
 
   def authenticated?
     return true if user_signed_in?
@@ -18,7 +24,7 @@ class ApplicationController < ActionController::Base
 
   def user_not_authenticated
     flash[:danger] = "You are not authenticated!"
-    return_back
+    redirect_to signin_path
   end
 
   def user_not_authorized
