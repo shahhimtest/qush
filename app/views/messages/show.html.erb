@@ -8,12 +8,7 @@
       </div>
 
       <div class="panel-body">
-        <p><%= @message.content %></p>
-        <hr>
-        <p>Likes <%= @message.likes_count %></p>
-        <small>
-          <%= time_tag @message.created_at %>
-        </small>
+        <%= render 'message', message: @message %>
       </div>
 
       <% if current_user == @message.publisher %>

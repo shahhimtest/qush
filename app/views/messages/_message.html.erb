@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-xs-12">
+    <%= link_to user_path(message.publisher) do %>
+      <b><%= message.publisher.name %></b>
+      <small>@<%= message.publisher.username %></small>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="message-content">
+      <%= link_to message.content, message_path(message) %>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-6">
+    <p>
+      <% if like = message.likes.find_by(user: current_user) %>
+        <%= link_to 'Unlike', message_like_path(message, return_to: request.fullpath), method: :delete %>&nbsp;
+      <% else %>
+        <%= link_to 'Like', message_like_path(message, return_to: request.fullpath), method: :post %>&nbsp;
+      <% end %>
+      (<%= number_with_delimiter message.likes_count %>)
+    </p>
+  </div>
+  <div class="col-xs-6 text-right">
+    <p><%= time_ago_in_words message.created_at %> ago</p>
+  </div>
+</div>
