@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-md-offset-4 col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          Publish Message
+        </h3>
+      </div>
+
+      <div class="panel-body">
+        <%= simple_form_for @message do |f| %>
+          <%= f.input :content %>
+          <%= f.button :submit, 'Publish' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

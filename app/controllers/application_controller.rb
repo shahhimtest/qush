@@ -39,4 +39,8 @@ class ApplicationController < ActionController::Base
   def return_back(fallback_url=nil)
     redirect_to session.delete(:return_to) || fallback_url || root_path
   end
+
+  def redirect_back(fallback_location: root_path)
+    super(fallback_location: fallback_location)
+  end
 end
