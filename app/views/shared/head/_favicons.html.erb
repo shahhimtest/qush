@@ -1,0 +1,9 @@
+<%= favicon_link_tag 'favicons/favicon.ico' %>
+
+<% [180, 167, 152, 120, 76, 57].each do |size| %>
+  <%= favicon_link_tag "favicons/apple-touch-icon@#{size}px.png", rel: 'apple-touch-icon', type: 'image/png', sizes: "#{size}x#{size}" %>
+<% end %>
+
+<% [192, 128].each do |size| %>
+  <%= favicon_link_tag "favicons/android-icon@#{size}px.png", rel: 'icon', type: 'image/png', sizes: "#{size}x#{size}" %>
+<% end %>

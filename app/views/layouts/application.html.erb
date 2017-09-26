@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Qush</title>
+    <title>
+      Qush
+      <% if content_for?(:title) %>
+        - <%= yield(:title) %>
+      <% end %>
+    </title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= render 'shared/head/favicons' %>
   </head>
 
   <body>
