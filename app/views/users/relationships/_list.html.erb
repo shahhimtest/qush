@@ -1,6 +1,6 @@
 <div class="list-group">
   <% users.each do |user| %>
-    <%= link_to user_path(user), class: 'list-group-item' do %>
+    <%= link_to user_short_path(user.username), class: 'list-group-item' do %>
       <b><%= user.name %></b>
       <small>@<%= user.username %></small>
     <% end %>

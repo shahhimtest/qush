@@ -3,7 +3,7 @@
     <div class="panel panel-default">
       <% if @messages.empty? %>
         <div class="panel-body">
-          No messages in Newsfeed yet. Follow other people to see something here.
+          No messages in Newsfeed yet. Follow <%= link_to 'other people', users_path %> to see something here.
         </div>
       <% end %>
 

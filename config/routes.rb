@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get 'newsfeed' => 'newsfeed#show'
 
+  get '@:username' => 'users#show', as: :user_short
+
   resources :relationships, only: [:create, :destroy]
   resources :messages, only: [:new, :create, :show, :destroy] do
     scope module: :messages do
