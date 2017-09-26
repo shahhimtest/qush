@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   get 'newsfeed' => 'newsfeed#show'
 
   resources :relationships, only: [:create, :destroy]
-  resources :messages, only: [:new, :create, :show, :destroy]
+  resources :messages, only: [:new, :create, :show, :destroy] do
+    scope module: :messages do
+      resource :like, only: [:create, :destroy]
+    end
+  end
   resources :users do
     get 'confirm/:confirmation_token' => 'users#confirm', as: :confirm
 

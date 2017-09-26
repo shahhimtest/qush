@@ -1,6 +1,5 @@
-class MessagesController < ApplicationController
-  before_action :set_message, only: [:show, :destroy]
-  before_action :authorize!
+class MessagesController < Messages::Base
+  skip_before_action :set_message, only: [:new, :create]
 
   def new
     @message = Message.new message_params
@@ -37,10 +36,6 @@ class MessagesController < ApplicationController
   def message_params
     return unless params[:message].present?
     params.require(:message).permit(:content)
-  end
-
-  def set_message
-    @message = Message.find params[:message_id] || params[:id]
   end
 
   def authorized?

@@ -1,22 +1,22 @@
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-lg-offset-3 col-lg-2 col-md-offset-2 col-md-3 col-sm-3">
     <div class="panel panel-default">
       <div class="panel-body text-center">
         <div class="row">
           <div class="col-md-12">
-            <h3>
+            <h4>
               <%= @user.name %><br>
               <small>
                 @<%= @user.username %>
               </small>
-            </h3>
+            </h4>
 
             <% if current_user == @user %>
               <hr>
               <%= link_to 'Edit Profile', edit_user_path(@user), class: 'btn btn-link' %>
             <% else %>
               <hr>
-              <% if relationship = current_user&.active_relationships.find_by(followed_id: @user.id) %>
+              <% if relationship = current_user&.active_relationships.find_by(followed: @user) %>
                 <%= link_to 'Unfollow', relationship_path(relationship, return_to: request.fullpath), method: :delete, class: 'btn btn-default btn-block' %>
               <% else %>
                 <%= link_to 'Follow', relationships_path(return_to: request.fullpath, relationship: { followed_id: @user.id }), method: :post, class: 'btn btn-primary btn-block' %>
@@ -31,13 +31,13 @@
           <div class="col-md-6">
             <p>    
               <b>Follower</b><br>
-              <%= @user.follower_count %>
+              <%= number_with_delimiter @user.follower_count %>
             </p>
           </div>
           <div class="col-md-6">
             <p>
               <b>Following</b><br>
-              <%= @user.followed_count %>
+              <%= number_with_delimiter @user.followed_count %>
             </p>
           </div>
         </div>
@@ -45,7 +45,7 @@
     </div>
   </div>
 
-  <div class="col-md-9">
+  <div class="col-lg-4 col-md-5 col-sm-9">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">
@@ -62,12 +62,29 @@
       <ul class="list-group">
         <% @messages.each do |message| %>
           <li class="list-group-item">
-            <p><%= link_to message.content, message_path(message) %></p>
+            <div class="row">
+              <div class="col-xs-12">
+                <%= link_to message.content, message_path(message) %>
+              </div>
+            </div>
 
-            <p>Likes <%= message.likes_count %><br></p>
-            <small>
-              <%= time_tag message.created_at %>
-            </small>
+            <hr>
+
+            <div class="row">
+              <div class="col-xs-6">
+                <p>
+                  <% if like = message.likes.find_by(user: current_user) %>
+                    <%= link_to 'Unlike', message_like_path(message, return_to: request.fullpath), method: :delete %>&nbsp;
+                  <% else %>
+                    <%= link_to 'Like', message_like_path(message, return_to: request.fullpath), method: :post %>&nbsp;
+                  <% end %>
+                  (<%= number_with_delimiter message.likes_count %>)
+                </p>
+              </div>
+              <div class="col-xs-6 text-right">
+                <p><%= time_ago_in_words message.created_at %> ago</p>
+              </div>
+            </div>
           </li>
         <% end %>
       </ul>
