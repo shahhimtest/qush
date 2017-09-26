@@ -17,6 +17,8 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_many(:passive_relationships).class_name('Relationship').with_foreign_key(:followed_id).dependent(:destroy) }
   it { is_expected.to have_many(:follower).through(:passive_relationships).source(:follower) }
 
+  it { is_expected.to have_many(:followed_messages).through(:followed).source(:messages) }
+
   it 'downcases email before save' do
     email = FFaker::Internet.email.upcase
     subject.email = email

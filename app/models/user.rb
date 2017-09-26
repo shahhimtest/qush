@@ -17,6 +17,8 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name: :Relationship, foreign_key: :followed_id, dependent: :destroy
   has_many :follower, through: :passive_relationships, source: :follower
 
+  has_many :followed_messages, through: :followed, source: :messages
+
   def created_message_last_24_hours?
     messages.created_last_24_hours.present?
   end

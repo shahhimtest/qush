@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'signin' => 'users/sessions#new'
   delete 'signout' => 'users/sessions#destroy'
 
+  get 'newsfeed' => 'newsfeed#show'
+
   resources :relationships, only: [:create, :destroy]
   resources :messages, only: [:new, :create, :show, :destroy]
   resources :users do

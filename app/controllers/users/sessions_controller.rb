@@ -10,7 +10,7 @@ class Users::SessionsController < ApplicationController
         sign_in @user, permanent: params[:permanent] == '1'
 
         flash[:success] = 'Successfully signed in.'
-        return_back
+        return_back newsfeed_path
       else
         flash[:danger] = 'User not confirmed!'
         redirect_to signin_path

@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-offset-3 col-md-6">
+    <div class="panel panel-default">
+      <% if @messages.empty? %>
+        <div class="panel-body">
+          No messages in Newsfeed yet. Follow other people to see something here.
+        </div>
+      <% end %>
+
+      <ul class="list-group">
+        <% @messages.each do |message| %>
+          <li class="list-group-item">
+            <p>
+              <b><%= link_to message.publisher.name, user_path(message.publisher) %></b>
+            </p>
+            <p><%= link_to message.content, message_path(message) %></p>
+            <hr>
+            <small>
+              <%= time_tag message.created_at %>
+            </small>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
