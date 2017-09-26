@@ -2,3 +2,4 @@ en:
   errors:
     messages:
       contains_url: contains URL
+      cannot_publish: cannot publish

@@ -44,4 +44,33 @@ RSpec.describe User, type: :model do
       expect(record.confirmation_token).to eq subject.confirmation_token
     end
   end
+
+  describe '#created_message_last_24_hours?' do
+    before { subject.save }
+
+    it 'returns true if message created last 24 hours' do
+      message = create :message, publisher: subject
+      expect(subject.created_message_last_24_hours?).to be true
+    end
+
+    it 'returns false if no message present' do
+      expect(subject.created_message_last_24_hours?).to be false
+    end
+
+    it 'returns false if last message is older than 24 hours' do
+      message = create :message, publisher: subject, created_at: 1.day.ago
+      expect(subject.created_message_last_24_hours?).to be false
+    end
+  end
+
+  describe '#can_publish?' do
+    it 'returns true if no message present in last 24 hours' do
+      expect(subject.can_publish?).to be true
+    end
+
+    it 'returns false if message present in last 24 hours' do
+      message = create :message, publisher: subject
+      expect(subject.can_publish?).to be false
+    end
+  end
 end

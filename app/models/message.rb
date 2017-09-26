@@ -4,8 +4,11 @@ class Message < ApplicationRecord
   validates :content, presence: true, length: { maximum: 180 }
 
   validate :if_url_in_content
+  validate :if_user_can_publish
 
   has_many :likes, dependent: :destroy
+
+  scope :created_last_24_hours, -> { where("created_at >= ?", 1.day.ago) }
 
   private
 
@@ -16,6 +19,12 @@ class Message < ApplicationRecord
 
     if content.match regex
       errors.add :content, I18n.t('errors.messages.contains_url')
+    end
+  end
+
+  def if_user_can_publish
+    unless publisher.can_publish?
+      errors.add :publisher, I18n.t('errors.messages.cannot_publish')
     end
   end
 end
