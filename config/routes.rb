@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'signin' => 'users/sessions#new'
   delete 'signout' => 'users/sessions#destroy'
 
+  resources :relationships, only: [:create, :destroy]
+
   resources :users do
     get 'confirm/:confirmation_token' => 'users#confirm', as: :confirm
 

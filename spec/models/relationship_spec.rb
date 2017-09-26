@@ -5,8 +5,8 @@ RSpec.describe Relationship, type: :model do
 
   it { is_expected.to be_valid }
 
-  it { is_expected.to belong_to(:follower).class_name(:User) }
-  it { is_expected.to belong_to(:followed).class_name(:User) }
+  it { is_expected.to belong_to(:follower).class_name(:User).counter_cache(:followed_count) }
+  it { is_expected.to belong_to(:followed).class_name(:User).counter_cache(:follower_count) }
 
   it 'is invalid if same user follows other user already' do
     subject.save
