@@ -16,6 +16,19 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li>
+            <li class="dropdown">
+            <%= link_to current_user.name, user_path(current_user), role: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } %>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'Profile', user_path(current_user) %></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to 'Logout', signout_path, method: :delete %></li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to 'Sign In', signin_path %></li>
+        <% end %>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
