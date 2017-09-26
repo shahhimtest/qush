@@ -3,11 +3,16 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   subject { build :user }
 
+  it { is_expected.to be_valid }
+
   it { is_expected.to have_secure_password }
 
   it { is_expected.to validate_presence_of :name }
+  it { is_expected.to validate_presence_of :username }
   it { is_expected.to validate_presence_of :email }
   it { is_expected.to validate_presence_of :confirmation_token }
+
+  it { is_expected.to validate_uniqueness_of(:username).case_insensitive }
 
   it { is_expected.to have_many(:messages).with_foreign_key(:publisher_id).dependent(:destroy) }
   it { is_expected.to have_many(:likes).dependent(:destroy) }

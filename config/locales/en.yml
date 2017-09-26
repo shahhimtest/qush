@@ -3,3 +3,4 @@ en:
     messages:
       contains_url: contains URL
       cannot_publish: cannot publish
+      not_a_valid_username: not a valid username

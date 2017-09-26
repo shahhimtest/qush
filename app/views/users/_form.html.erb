@@ -2,8 +2,9 @@
 
 <%= simple_form_for @user do |f| %>
   <%= f.input :name %>
+  <%= f.input :username %>
   <%= f.input :email, disabled: disable_email %>
   <%= f.input :password, required: true %>
   <%= f.input :password_confirmation, required: true %>
-  <%= f.button :submit, 'Signup' %>
+  <%= f.button :submit %>
 <% end %>

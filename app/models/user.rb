@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
 
-  validates_presence_of :name, :email, :confirmation_token
+  validates_presence_of :name, :username, :email, :confirmation_token
+  validates :username, username: true, uniqueness: { case_sensitive: false }
   validates :email, email: true
 
   after_initialize -> { self.confirmation_token = SecureRandom.urlsafe_base64 }, unless: :confirmation_token?

@@ -92,12 +92,12 @@ class UsersController < ApplicationController
 
   def user_params
     return unless params[:user].present?
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :username, :email, :password, :password_confirmation)
   end
 
   def user_edit_params
     return unless params[:user].present?
-    params.require(:user).permit(:name, :password, :password_confirmation)
+    params.require(:user).permit(:name, :username, :password, :password_confirmation)
   end
 
   def set_user
