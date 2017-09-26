@@ -3,6 +3,7 @@ class MessagesController < Messages::Base
 
   def new
     @message = Message.new message_params
+    set_message_warning
   end
 
   def create
@@ -14,6 +15,7 @@ class MessagesController < Messages::Base
       redirect_to message_path(@message)
     else
       flash.now[:danger] = 'Unable to publish message!'
+      set_message_warning
       render :new
     end
   end
@@ -32,6 +34,12 @@ class MessagesController < Messages::Base
   end
 
   private
+
+  def set_message_warning
+    unless current_user.can_publish?
+      flash.now[:warning] = 'You published a message in this period already. You can push one message every 24 hours.'
+    end
+  end
 
   def message_params
     return unless params[:message].present?
