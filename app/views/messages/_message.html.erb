@@ -29,6 +29,11 @@
         <%= link_to message_likes_path(message) do %>
           <%= number_with_delimiter(message.likes_count) %>
         <% end %>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+
+        <%= link_to fa_icon('facebook'), facebook_share_link(message_url(message)), target: :_blank %>&nbsp;
+        <%= link_to fa_icon('twitter'), twitter_share_link(message_url(message)), target: :_blank %>&nbsp;
+        <%= link_to fa_icon('linkedin'), linkedin_share_link(message_url(message)), target: :_blank %>
       </p>
     </div>
     <div class="col-xs-6 text-right">
