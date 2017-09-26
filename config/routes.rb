@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :messages, only: [:new, :create, :show, :destroy] do
     scope module: :messages do
+      resources :likes, only: [:index]
       resource :like, only: [:create, :destroy]
     end
   end

@@ -24,7 +24,7 @@
       <% else %>
         <%= link_to 'Like', message_like_path(message, return_to: request.fullpath), method: :post %>&nbsp;
       <% end %>
-      (<%= number_with_delimiter message.likes_count %>)
+      (<%= link_to number_with_delimiter(message.likes_count), message_likes_path(message) %>)
     </p>
   </div>
   <div class="col-xs-6 text-right">

@@ -2,6 +2,10 @@ class Messages::LikesController < Messages::Base
   before_action :set_like, only: :destroy
   before_action :authorize!
 
+  def index
+    @likers = @message.likers.paginate(page: params[:page])
+  end
+
   def create
     @like = @message.likes.new user: current_user
 
@@ -31,6 +35,10 @@ class Messages::LikesController < Messages::Base
   end
 
   def authorized?
+    if index_action?
+      return true
+    end
+
     if create_action?
       return true unless @message.likes.find_by user: current_user
     end

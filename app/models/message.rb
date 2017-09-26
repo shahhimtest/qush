@@ -7,6 +7,7 @@ class Message < ApplicationRecord
   validate :if_user_can_publish
 
   has_many :likes, dependent: :destroy
+  has_many :likers, through: :likes, source: :user
 
   scope :created_last_24_hours, -> { where("created_at >= ?", 1.day.ago) }
 

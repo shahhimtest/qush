@@ -9,6 +9,7 @@ RSpec.describe Message, type: :model do
   it { is_expected.to validate_length_of(:content).is_at_most(180) }
 
   it { is_expected.to have_many(:likes).dependent(:destroy) }
+  it { is_expected.to have_many(:likers).through(:likes).source(:user) }
 
   describe 'url in content' do
     context 'with url' do
