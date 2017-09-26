@@ -11,6 +11,13 @@ RSpec.describe User, type: :model do
 
   it { is_expected.to have_many(:messages).with_foreign_key(:publisher_id) }
 
+  it 'downcases email before save' do
+    email = FFaker::Internet.email.upcase
+    subject.email = email
+    subject.save
+    expect(subject.email).to eq email.downcase
+  end
+
   describe 'confirmation token creation' do
     it 'creates a confirmation token if not provided on init' do
       subject = User.new
