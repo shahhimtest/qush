@@ -8,6 +8,8 @@ RSpec.describe Message, type: :model do
   it { is_expected.to validate_presence_of :content }
   it { is_expected.to validate_length_of(:content).is_at_most(180) }
 
+  it { is_expected.to have_many :likes }
+
   describe 'url in content' do
     context 'with url' do
       before { subject.content = 'hipster ipsum abc.com' }

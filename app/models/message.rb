@@ -5,6 +5,8 @@ class Message < ApplicationRecord
 
   validate :if_url_in_content
 
+  has_many :likes
+
   private
 
   def if_url_in_content
