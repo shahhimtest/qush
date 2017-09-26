@@ -1,6 +1,8 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
+  strip_attributes
+
   def self.booleanable(field_name, datetime_field_name: [field_name, :_at].join)
     getter_name = field_name
     getter_name_2 = [field_name, :'?'].join
