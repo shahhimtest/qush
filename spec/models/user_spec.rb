@@ -9,7 +9,13 @@ RSpec.describe User, type: :model do
   it { is_expected.to validate_presence_of :email }
   it { is_expected.to validate_presence_of :confirmation_token }
 
-  it { is_expected.to have_many(:messages).with_foreign_key(:publisher_id) }
+  it { is_expected.to have_many(:messages).with_foreign_key(:publisher_id).dependent(:destroy) }
+  it { is_expected.to have_many(:likes).dependent(:destroy) }
+
+  it { is_expected.to have_many(:active_relationships).class_name('Relationship').with_foreign_key(:follower_id).dependent(:destroy) }
+  it { is_expected.to have_many(:followed).through(:active_relationships).source(:followed) }
+  it { is_expected.to have_many(:passive_relationships).class_name('Relationship').with_foreign_key(:followed_id).dependent(:destroy) }
+  it { is_expected.to have_many(:follower).through(:passive_relationships).source(:follower) }
 
   it 'downcases email before save' do
     email = FFaker::Internet.email.upcase

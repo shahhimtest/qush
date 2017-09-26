@@ -9,5 +9,11 @@ class User < ApplicationRecord
 
   booleanable :confirmed
 
-  has_many :messages, foreign_key: :publisher_id
+  has_many :messages, foreign_key: :publisher_id, dependent: :destroy
+  has_many :likes, dependent: :destroy
+
+  has_many :active_relationships, class_name: :Relationship, foreign_key: :follower_id, dependent: :destroy
+  has_many :followed, through: :active_relationships, source: :followed
+  has_many :passive_relationships, class_name: :Relationship, foreign_key: :followed_id, dependent: :destroy
+  has_many :follower, through: :passive_relationships, source: :follower
 end

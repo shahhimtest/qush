@@ -5,7 +5,7 @@ class Message < ApplicationRecord
 
   validate :if_url_in_content
 
-  has_many :likes
+  has_many :likes, dependent: :destroy
 
   private
 
