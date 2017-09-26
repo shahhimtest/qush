@@ -23,7 +23,7 @@ class UsersController < Users::Base
   end
 
   def show
-    @messages = @user.messages.paginate(page: params[:messages_page])
+    @messages = @user.messages.paginate(page: params[:messages_page]).order(created_at: :desc)
   end
 
   def edit
