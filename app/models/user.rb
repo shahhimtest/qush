@@ -6,4 +6,6 @@ class User < ApplicationRecord
   after_initialize -> { self.confirmation_token = SecureRandom.urlsafe_base64 }, unless: :confirmation_token?
 
   booleanable :confirmed
+
+  has_many :messages, foreign_key: :publisher_id
 end

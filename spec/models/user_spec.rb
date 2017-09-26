@@ -9,6 +9,8 @@ RSpec.describe User, type: :model do
   it { is_expected.to validate_presence_of :email }
   it { is_expected.to validate_presence_of :confirmation_token }
 
+  it { is_expected.to have_many(:messages).with_foreign_key(:publisher_id) }
+
   describe 'confirmation token creation' do
     it 'creates a confirmation token if not provided on init' do
       subject = User.new
