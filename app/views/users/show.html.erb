@@ -67,7 +67,7 @@
 
       <ul class="list-group">
         <% @messages.each do |message| %>
-          <li class="list-group-item">
+          <li class="list-group-item list-group-item-msg">
             <%= render 'messages/message', message: message %>
           </li>
         <% end %>

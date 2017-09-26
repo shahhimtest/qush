@@ -46,6 +46,16 @@ class MessagesController < Messages::Base
     params.require(:message).permit(:content)
   end
 
+  def authenticated?
+    if show_action?
+      return true
+    end
+
+    if create_action? || destroy_action?
+      return true if user_signed_in?
+    end
+  end
+
   def authorized?
     if create_action? || show_action?
       return true

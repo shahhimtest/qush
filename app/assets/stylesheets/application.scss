@@ -1,5 +1,3 @@
-@import "**/*";
-
 $font-family-sans-serif: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 $brand-success: #5cb85c;
@@ -12,6 +10,8 @@ $brand-danger: #d9534f;
 @import "bootswatch/lumen/variables";
 @import "bootstrap";
 @import "bootswatch/lumen/bootswatch";
+@import "font-awesome";
+@import "**/*";
 
 body {
   margin-top: 70px;
