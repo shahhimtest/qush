@@ -13,6 +13,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to validate_presence_of :confirmation_token }
 
   it { is_expected.to validate_uniqueness_of(:username).case_insensitive }
+  it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
 
   it { is_expected.to have_many(:messages).with_foreign_key(:publisher_id).dependent(:destroy) }
   it { is_expected.to have_many(:likes).dependent(:destroy) }

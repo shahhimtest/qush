@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   validates_presence_of :name, :username, :email, :confirmation_token
   validates :username, username: true, uniqueness: { case_sensitive: false }
-  validates :email, email: true
+  validates :email, email: true, uniqueness: { case_sensitive: false }
 
   after_initialize -> { self.confirmation_token = SecureRandom.urlsafe_base64 }, unless: :confirmation_token?
   before_save { email.downcase! }
