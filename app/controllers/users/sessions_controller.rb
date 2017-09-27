@@ -3,7 +3,11 @@ class Users::SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by email: user_params[:email]
+    if user_params[:email] =~ /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+      @user = User.find_by email: user_params[:email]
+    else
+      @user = User.find_by username: user_params[:email]
+    end
 
     if @user&.authenticate(user_params[:password])
       if @user.confirmed?
