@@ -6,7 +6,7 @@ RSpec.describe Message, type: :model do
   it { is_expected.to belong_to(:publisher).class_name(:User) }
 
   it { is_expected.to validate_presence_of :content }
-  it { is_expected.to validate_length_of(:content).is_at_most(180) }
+  it { is_expected.to validate_length_of(:content).is_at_most(140) }
 
   it { is_expected.to have_many(:likes).dependent(:destroy) }
   it { is_expected.to have_many(:likers).through(:likes).source(:user) }

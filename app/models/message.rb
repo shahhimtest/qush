@@ -1,7 +1,7 @@
 class Message < ApplicationRecord
   belongs_to :publisher, class_name: :User
 
-  validates :content, presence: true, length: { maximum: 180 }
+  validates :content, presence: true, length: { maximum: 140 }
 
   validate :if_url_in_content
   validate :if_user_can_publish
