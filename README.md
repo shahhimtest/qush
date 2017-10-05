@@ -1,24 +1,11 @@
-# README
+# Qush
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple social network where people can publish just one message a day with 140 characters and no links.
 
-Things you may want to cover:
+This would be my favorite social network. Get information in 140 characters and not just a link which leads to a whole article.
 
-* Ruby version
+**This was a 1 day project. Controllers and that stuff aren't tested. It was just a project for me to see how I would a social news site today.**
 
-* System dependencies
+Feel free to use it and make it big. Just consider to hire me if you do so ;)
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Copyright (c) 2017 Tobias Feistmantl, MIT license
